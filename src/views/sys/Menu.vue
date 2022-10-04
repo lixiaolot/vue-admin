@@ -78,7 +78,7 @@
     </el-table>
 <!--    新增的对话框-->
     <el-dialog
-        title="提示"
+
         :visible.sync="dialogVisible"
         width="600px"
         :before-close="handleClose">
@@ -137,8 +137,8 @@
           <el-input-number v-model="editForm.orderNum" :min="1" label="排序号">1</el-input-number>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('editForm')">立即创建</el-button>
-          <el-button @click="resetForm('editForm')">重置</el-button>
+          <el-button round type="primary" @click="submitForm('editForm')">立即创建</el-button>
+          <el-button round @click="resetForm('editForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>

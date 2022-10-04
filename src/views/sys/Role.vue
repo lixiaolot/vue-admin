@@ -61,8 +61,8 @@
           prop="statu"
           label="状态">
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 1" type="success">正常</el-tag>
-          <el-tag size="small" v-else-if="scope.row.status === 0" type="danger">禁用</el-tag>
+          <el-tag size="small" v-if="scope.row.statu === 1" type="success">正常</el-tag>
+          <el-tag size="small" v-else-if="scope.row.statu === 0" type="danger">禁用</el-tag>
         </template>
       </el-table-column>
 
@@ -97,7 +97,7 @@
 
     <!--    新增的对话框-->
     <el-dialog
-        title="提示"
+
         :visible.sync="dialogVisible"
         width="600px"
         :before-close="handleClose">
@@ -125,10 +125,35 @@
 
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm('editForm')">立即创建</el-button>
-          <el-button @click="resetForm('editForm')">重置</el-button>
+          <el-button round type="primary" @click="submitForm('editForm')">立即创建</el-button>
+          <el-button round @click="resetForm('editForm')">重置</el-button>
         </el-form-item>
       </el-form>
+    </el-dialog>
+
+
+    <el-dialog
+        title="分配权限"
+        :visible.sync="permDialogVisible"
+        width="600px">
+      <el-form :model="permForm">
+
+        <el-tree
+            :data="permTreeData"
+            show-checkbox
+            ref="permTree"
+            check-strictly
+            node-key="id"
+            :default-expand-all = true
+            :props="defaultProps">
+        </el-tree>
+
+      </el-form>
+
+        <span slot="footer" class="dialog-footer">
+          <el-button round @click="permDialogVisible = false">取 消</el-button>
+          <el-button round type="primary" @click="submitPermFormHandle('permForm')">确 定</el-button>
+        </span>
     </el-dialog>
 
   </div>
@@ -158,7 +183,14 @@ export default {
       size: 10,
       total: 0,
       dialogVisible:false,
-      editForm:{}
+      permDialogVisible:false,
+      editForm:{},
+      permForm:{},
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      },
+      permTreeData: []
     }
   },
   methods:{
@@ -170,8 +202,12 @@ export default {
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
+      this.size = val;
+      this.getRoleList();
     },
     handleCurrentChange(val) {
+      this.current = val;
+      this.getRoleList();
       console.log(`当前页: ${val}`);
     },
     handleClose() {
@@ -232,8 +268,26 @@ export default {
       this.$axios.get('/sys/role/info'+ id).then( res =>{
         this.editForm = res.data.data
         console.log(this.editForm )
+        console.log(res)
         this.dialogVisible = true
       })
+    },
+    submitPermFormHandle(formName){
+      var menuIds =  this.$refs.permTree.getCheckedKeys()
+      console.log(menuIds)
+      this.$axios.post("/sys/role/perm/"+ this.permForm.id,menuIds).then(res =>{
+        this.$message({
+          message: '恭喜你，操作成功！',
+          type: 'success',
+          onClose: ()=>{
+            this.getRoleList()
+          }
+        });
+        this.permDialogVisible =false
+
+
+      })
+
     },
     delHandle(id){
 
@@ -265,6 +319,10 @@ export default {
   },
   created() {
     this.getRoleList()
+
+    this.$axios.get('/sys/menu/list').then(res =>{
+      this.permTreeData = res.data.data
+    })
   }
 }
 </script>

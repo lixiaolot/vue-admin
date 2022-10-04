@@ -105,7 +105,7 @@ Mock.mock('/sys/menu/nav','get',()=>{
             ]
         },
     ]
-    let authority = []
+    let authority = ['sys:user:save','sys:user:delete']
 
     Result.data ={
         nav : nav,
@@ -384,7 +384,7 @@ Mock.mock(RegExp('/sys/user/list*'), 'get', () => {
                 "statu": 1,
                 "username": "admin",
                 "password": "$2a$10$R7zegeWzOXPw871CmNuJ6upC0v8D373GuLuTw8jn6NET4BkPRZfgK",
-                "avatar": "https://image-1300566513.cos.ap-guangzhou.myqcloud.com/upload/images/5a9f48118166308daba8b6da7e466aab.jpg",
+                "avatar": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
                 "email": "123@qq.com",
                 "phone": "11254125",
                 "city": "广州",
@@ -419,7 +419,7 @@ Mock.mock(RegExp('/sys/user/list*'), 'get', () => {
                 "statu": 1,
                 "username": "test",
                 "password": "$2a$10$0ilP4ZD1kLugYwLCs4pmb.ZT9cFqzOZTNaMiHxrBnVIQUGUwEvBIO",
-                "avatar": "https://image-1300566513.cos.ap-guangzhou.myqcloud.com/upload/images/5a9f48118166308daba8b6da7e466aab.jpg",
+                "avatar": "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
                 "email": "test@qq.com",
                 "city": null,
                 "lastLogin": null,
