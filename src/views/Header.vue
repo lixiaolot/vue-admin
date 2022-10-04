@@ -9,8 +9,10 @@
             {{ userInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>
-          <RouterLink to="/userCenter">个人中心</RouterLink>
+        <el-dropdown-item >
+          <RouterLink to="/userCenter" >
+            <span @click="selectMenu({name:'UserCenter',title:'个人中心'})">个人中心</span>
+          </RouterLink>
         </el-dropdown-item>
         <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
       </el-dropdown-menu>
@@ -48,6 +50,9 @@ name: "Header",
       this.$store.commit("resetState")
       this.$router.push('/login')
     })
+    },
+    selectMenu(item){
+      this.$store.commit("addTab",item)
     }
   }
 }

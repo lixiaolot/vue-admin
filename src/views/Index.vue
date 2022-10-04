@@ -29,7 +29,7 @@ export default {
 <style scoped>
 .el-main {
   color: #333;
-  text-align: center;
+  /*text-align: center;*/
   line-height: 160px;
 }
 </style>

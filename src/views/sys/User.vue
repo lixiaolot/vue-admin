@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>用户管理</h1>
+1111111111
   </div>
 </template>
 
 <script>
 export default {
-  name: "User"
+  name: "User",
+
 }
 </script>
 
