@@ -44,3 +44,73 @@ Mock.mock('/userInfo','get',()=>{
 
 })
 
+//登出
+Mock.mock('/logout','post',()=>{
+
+    return Result
+
+})
+
+//获取菜单
+Mock.mock('/sys/menu/nav','get',()=>{
+    let nav = [
+        {
+            title: '系统管理',
+            name:'SysMange',
+            icon:'el-icon-s-operation',
+            component: '',
+            path:'',
+            children: [
+                {
+                    title: '用户管理',
+                    name:'SysUser',
+                    icon:'el-icon-s-custom',
+                    path:'/sys/users',
+                    component: 'sys/User',
+                    children:[]
+                },
+                {
+                    title: '角色管理',
+                    name:'SysRole',
+                    icon:'el-icon-rank',
+                    path:'/sys/roles',
+                    component: 'sys/Role',
+                    children:[]
+                },
+                {
+                    title: '菜单管理',
+                    name:'SysMenu',
+                    icon:'el-icon-menu',
+                    path:'/sys/menus',
+                    component: 'sys/Menu',
+                    children:[]
+                }
+            ]
+        },
+        {
+            title: '系统工具',
+            name:'SysTools',
+            icon:'el-icon-s-tools',
+            component: '',
+            path:'',
+            children:[
+                {
+                    title: '数字字典',
+                    name:'SysDict',
+                    icon:'el-icon-s-order',
+                    component: '',
+                    path:'/sys/dict',
+                    children:[]
+                }
+            ]
+        },
+    ]
+    let authority = []
+
+    Result.data ={
+        nav : nav,
+        authority: authority
+    }
+
+    return Result
+})

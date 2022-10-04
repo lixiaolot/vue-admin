@@ -12,7 +12,7 @@
         <el-dropdown-item>
           <RouterLink to="/userCenter">个人中心</RouterLink>
         </el-dropdown-item>
-        <el-dropdown-item>退出</el-dropdown-item>
+        <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <el-link href="https://www.bilibili.com/"  target="_blank">B站</el-link>
@@ -36,11 +36,19 @@ name: "Header",
   this.getUserInfo();
   },
   methods:{
-  getUserInfo(){
+  getUserInfo() {
     this.$axios.get("/userInfo").then(res=> {
       this.userInfo = res.data.data
     })
-  }
+  },
+    logout() {
+    this.$axios.post('/logout').then(res=>{
+      localStorage.clear();
+      sessionStorage.clear();
+      this.$store.commit("resetState")
+      this.$router.push('/login')
+    })
+    }
   }
 }
 </script>

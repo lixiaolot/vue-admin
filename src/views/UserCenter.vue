@@ -1,15 +1,15 @@
 <template>
-<div>
+  <div style="text-align: center;">
   <h2>您好，{{ userInfo.username }}</h2>
 
   <el-form :model="passForm" status-icon :rules="rules" ref="passForm" label-width="100px">
-    <el-form-item label="旧密码" prop="currentPass"  style="width: 380px">
+    <el-form-item label="旧密码" prop="currentPass">
       <el-input type="password" v-model="passForm.currentPass" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="新密码" prop="password" style="width: 380px">
+    <el-form-item label="新密码" prop="password">
       <el-input type="password" v-model="passForm.password" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="确认密码" prop="checkPass" style="width: 380px">
+    <el-form-item label="确认密码" prop="checkPass">
       <el-input type="password" v-model="passForm.checkPass" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item>
@@ -96,6 +96,10 @@ export default {
 </script>
 
 <style scoped>
+.el-form {
+  width: 420px;
+  margin: 50px auto;
+}
 
 
 </style>

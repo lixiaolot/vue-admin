@@ -6,6 +6,7 @@
         <Header/>
       </el-header>
       <el-main>
+        <Tabs/>
         <router-view/>
       </el-main>
     </el-container>
@@ -13,11 +14,12 @@
 </template>
 
 <script>
-import Aside from "@/components/Aside";
-import Header from "@/components/Header";
+import Aside from "@/views/Aside";
+import Header from "@/views/Header";
+import Tabs from "@/views/Tabs";
 export default {
   name: "Home",
-  components: {Header, Aside}
+  components: {Header, Aside,Tabs}
 }
 </script>
 
@@ -45,9 +47,9 @@ export default {
 .el-main {
   color: #333;
   text-align: center;
-  line-height: 160px;
+  /*line-height: 160px;*/
+  padding: 0;
 }
-
 
 
 </style>
